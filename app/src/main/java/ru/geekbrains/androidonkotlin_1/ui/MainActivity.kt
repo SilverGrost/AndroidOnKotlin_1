@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.androidonkotlin_1.R
+import ru.geekbrains.androidonkotlin_1.data.Movie
+import ru.geekbrains.androidonkotlin_1.repository.IRepository
 import ru.geekbrains.androidonkotlin_1.repository.getRepository
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +29,31 @@ class MainActivity : AppCompatActivity() {
                     "Нажата кнопка",
                     Toast.LENGTH_SHORT
             ).show()
+
+
+            val repository: IRepository = getRepository()
+            val movies: List<Movie> = repository.getMovies()
+
+            println("1. Цикл for")
+            for(movie in movies) {
+                println(movie.title + " (" + movie.year + ")")
+            }
+
+            println("2. Цикл ...")
+            for(i in 0..movies.size - 1) {
+                println(movies.get(i).title + " (" + movies.get(i).year + ")")
+            }
+
+            println("3. Цикл for с dowTo")
+            for(i in movies.size - 1 downTo 0 step 2) {
+                println(movies.get(i).title + " (" + movies.get(i).year + ")")
+            }
+
+            println("4. Цикл for с until")
+            for (i in 0 until movies.size) {
+                println(movies.get(i).title + " (" + movies.get(i).year + ")")
+            }
+
         }
     }
 }
